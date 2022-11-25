@@ -11,13 +11,12 @@ const checkbox2 = document.getElementById('checkbox2');
 
 // check minimum length requirement
 function testMinimumLength(input, min, message) {
-    if (input.length === 0) {
+    if (input.length.trim() === 0) {
         showError(input, message)
     }
-    if (input.length < min) {
+    if (input.length.trim() < min) {
         showError(input, message)
     }
-    return true
 }
 
 // check email address
@@ -31,7 +30,8 @@ function testEmail(input, message) {
 
 // check if the value is numeric
 function testNumber(input, message) {
-    isNaN(input.value)
+    let inputValue = parseInt(input.value)
+    isNaN(inputValue)
         ? showError(input, message)
         : hideError(input)
 }
