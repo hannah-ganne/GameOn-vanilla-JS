@@ -55,7 +55,7 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit="return validate(e);"
             >
               <div class="formData">
                 <label for="first">Prénom</label><br>
@@ -66,7 +66,6 @@
                   name="first"
                   minlength="2"
                 /><br>
-                <small></small>
               </div>
               <div class="formData">
                 <label for="last">Nom</label><br>
@@ -107,8 +106,7 @@
                 />
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div
-                class="formData">
+              <div class="formData">
                 <input
                   class="checkbox-input"
                   type="radio"
