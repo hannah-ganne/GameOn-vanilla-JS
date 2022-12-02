@@ -33,7 +33,7 @@ Validating input values in the modal form
 const form = document.querySelector('form');
 const allInputs = Array.from(document.querySelectorAll("form input"));
 const toTest = ["first", "last", "email", "birthdate", "quantity", "checkbox1"];
-const inputs = allInputs.filter(input => toCheck.includes(input.id));
+const inputs = allInputs.filter(input => toTest.includes(input.id));
 const radioInputs = allInputs.filter(input => input.type == "radio");
 const location1 = document.getElementById('location1');
 
@@ -111,28 +111,20 @@ function validate() {
     return false;
 }
 
-function sendForm() {
-    form.reset();
-    displayConfirmationMsg();
-}
-
-/* 
-hiding form and displaying confirmation message
-*/
-
+// send form and display confimation message
 const modalBody = document.querySelector(".modal-body");
 
 function hideForm() {
     form.style.display = "none";
 }
 
-function displayConfirmationMsg() {
+function displayConfirmationMessage() {
     hideForm();
 
-    let message = document.createElement("div");
-    message.setAttribute("id", "confirmMessage");
-    message.innerHTML = `
-        <h2>Merci pour votre inscription !</h2>
+    let confirmMessage = document.createElement("div");
+    confirmMessage.setAttribute("id", "confirmMessage");
+    confirmMessage.innerHTML = `
+        <h2>Merci pour votre inscription</h2>
         <button id="closeConfirmMessage" class="btn-signup">Fermer</button>
         `
     modalBody.appendChild(confirmMessage);
@@ -141,5 +133,8 @@ function displayConfirmationMsg() {
     btn.addEventListener("click", closeModal);
 }
 
-
-
+function sendForm() {
+    // reset le formulaire
+    form.reset();
+    displayConfirmationMessage();
+}
