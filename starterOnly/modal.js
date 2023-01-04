@@ -7,17 +7,21 @@ function editNav() {
     }
 }
 
-/* 
-opening and closing the modal
-*/
+
 const modalBtn = document.querySelectorAll(".modal-btn");
 const closeBtn = document.querySelectorAll(".close");
 
+/**
+ * launches the modal
+ */
 function launchModal() {
     const modalbg = document.querySelector(".bground");
     modalbg.style.display = "block";
 }
 
+/**
+ * closes the modal
+ */
 function closeModal() {
     const modalbg = document.querySelector(".bground");
     modalbg.style.display = "none";
@@ -26,10 +30,6 @@ function closeModal() {
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
-/*
-Validating input values in the modal form
-*/
-
 const form = document.querySelector('form');
 const allInputs = Array.from(document.querySelectorAll("form input"));
 const toTest = ["first", "last", "email", "birthdate", "quantity", "checkbox1"];
@@ -37,24 +37,49 @@ const inputs = allInputs.filter(input => toTest.includes(input.id));
 const radioInputs = allInputs.filter(input => input.type == "radio");
 const location1 = document.getElementById('location1');
 
+/**
+ * tests the first name input
+ * @param {object} input 
+ * @returns boolean
+ */
 function test_first(input) {
     const nameRegex = /^[a-zA-Z]+$/;
     return nameRegex.test(input.value.trim())
 }
 
+/**
+ * tests the last name input
+ * @param {object} input 
+ * @returns boolean
+ */
 function test_last(input) {
     return test_first(input)
 }
 
+/**
+ * tests the email input
+ * @param {object} input 
+ * @returns boolean
+ */
 function test_email(input) {
     const emailRegex = /^\w+([.-]?\w+)@\w+([.-]?\w+).(.\w{2,3})+$/;
     return emailRegex.test(input.value)
 }
 
+/**
+ * tests the birthdate input
+ * @param {object} input 
+ * @returns boolean
+ */
 function test_birthdate(input) {
     return input.value.length > 0 ? true : false;
 }
 
+/**
+ * tests quantity input
+ * @param {object} input 
+ * @returns boolean
+ */
 function test_quantity(input) {
     let num = parseInt(input.value);
     if (num != NaN) {
@@ -63,23 +88,42 @@ function test_quantity(input) {
     return false;
 }
 
+/**
+ * tests if a radio button is checked
+ * @returns boolean
+ */
 function test_radioBtn() {
     return radioInputs.some(radio => radio.checked) ? true : false
 }
 
+/**
+ * test if the checkbox is checked
+ * @param {object} input 
+ * @returns boolean
+ */
 function test_checkbox1(input) {
     return input.checked
 }
 
+/**
+ * hides error messages
+ * @param {object} input 
+ */
 function hideError(input) {
     input.parentNode.setAttribute('data-error-visible', false);
 }
 
+/**
+ * shows error messages
+ * @param {object} input 
+ */
 function showError(input) {
     input.parentNode.setAttribute('data-error-visible', true);
 }
 
-// validate form
+/**
+ * validates if all input fields are correctly filled
+ */
 function validate() {
 
     let inputValues = [];
@@ -114,10 +158,16 @@ function validate() {
 // send form and display confimation message
 const modalBody = document.querySelector(".modal-body");
 
+/**
+ * hides the form
+ */
 function hideForm() {
     form.style.display = "none";
 }
 
+/**
+ * displays the confirmation message
+ */
 function displayConfirmationMessage() {
     hideForm();
 
@@ -133,8 +183,11 @@ function displayConfirmationMessage() {
     btn.addEventListener("click", closeModal);
 }
 
+/**
+ * submits the form
+ */
 function sendForm() {
-    // reset le formulaire
+    // reset the form
     form.reset();
     displayConfirmationMessage();
 }
